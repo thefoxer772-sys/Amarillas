@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>21 de septiembre 🌼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky-top: #FCE9B8;
+    --sky-mid: #FBC96A;
+    --sky-bottom: #EF9A4A;
+    --petal-1: #FFCB3D;
+    --petal-2: #FFB100;
+    --petal-shadow: #E8930B;
+    --center: #B5651D;
+    --stem: #5C7A3A;
+    --leaf: #6B8F47;
+    --leaf-2: #567A3A;
+    --hill: #7C8E4E;
+    --hill-dark: #67793E;
+    --ink: #5A3E17;
+    --card: rgba(255, 250, 236, 0.88);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Outfit', sans-serif;
+    background: var(--sky-mid);
+  }
+
+  body {
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* ---------- DESKTOP MESSAGE (default) ---------- */
+  .desktop-message {
+    height: 100vh;
+    height: 100dvh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    background: linear-gradient(180deg, #FCE9B8 0%, #F6D48C 55%, #EF9A4A 100%);
+    text-align: center;
+    padding: 32px;
+  }
+
+  .desktop-flower {
+    width: 92px;
+    height: 92px;
+  }
+
+  .desktop-message h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(24px, 3vw, 32px);
+    color: var(--ink);
+    margin: 0;
+    max-width: 480px;
+    line-height: 1.3;
+  }
+
+  .desktop-message p {
+    font-size: 16px;
+    color: #8A6A38;
+    margin: 0;
+    max-width: 380px;
+    line-height: 1.6;
+  }
+
+  .mobile-scene { display: none; }
+
+  /* ---------- MOBILE SCENE ---------- */
+  @media (max-width: 767px) {
+    .desktop-message { display: none; }
+
+    .mobile-scene {
+      display: block;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 48%, var(--sky-bottom) 100%);
+      overflow: hidden;
+    }
+
+    /* --- Fireflies --- */
+    .firefly {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #FFF3C4;
+      box-shadow: 0 0 8px 3px rgba(255, 224, 130, 0.85);
+      opacity: 0;
+      animation: firefly-glow 5s ease-in-out infinite;
+    }
+    .firefly:nth-child(1) { top: 18%; left: 14%; animation-delay: 0.4s; }
+    .firefly:nth-child(2) { top: 30%; left: 78%; animation-delay: 1.6s; }
+    .firefly:nth-child(3) { top: 12%; left: 55%; animation-delay: 2.8s; }
+    .firefly:nth-child(4) { top: 40%; left: 30%; animation-delay: 3.6s; }
+
+    @keyframes firefly-glow {
+      0%, 100% { opacity: 0; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-14px); }
+    }
+
+    /* --- Falling petals --- */
+    .falling-petal {
+      position: absolute;
+      top: -5%;
+      width: 10px;
+      height: 14px;
+      border-radius: 60% 60% 60% 5%;
+      background: linear-gradient(135deg, var(--petal-1), var(--petal-2));
+      opacity: 0;
+      animation: petal-fall linear infinite;
+    }
+    .falling-petal:nth-child(5) { left: 12%; animation-duration: 11s; animation-delay: 1s; }
+    .falling-petal:nth-child(6) { left: 40%; animation-duration: 13s; animation-delay: 4s; }
+    .falling-petal:nth-child(7) { left: 68%; animation-duration: 10s; animation-delay: 2.5s; }
+    .falling-petal:nth-child(8) { left: 85%; animation-duration: 14s; animation-delay: 6s; }
+    .falling-petal:nth-child(9) { left: 25%; animation-duration: 12s; animation-delay: 8s; }
+
+    @keyframes petal-fall {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+      8% { opacity: 0.9; }
+      92% { opacity: 0.7; }
+      100% { transform: translateY(105vh) translateX(24px) rotate(340deg); opacity: 0; }
+    }
+
+    /* --- Ground / hill --- */
+    .hill {
+      position: absolute;
+      bottom: -6%;
+      left: -10%;
+      width: 120%;
+      height: 22%;
+      background: var(--hill);
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    }
+    .hill.back {
+      background: var(--hill-dark);
+      bottom: -10%;
+      height: 18%;
+      opacity: 0.7;
+      transform: scaleX(1.1);
+    }
+
+    /* --- Flower field --- */
+    .field {
+      position: absolute;
+      bottom: 6%;
+      left: 0;
+      width: 100%;
+      height: 62%;
+    }
+
+    .flower-svg {
+      position: absolute;
+      bottom: 0;
+      width: var(--w);
+      left: var(--l);
+      transform-origin: bottom center;
+      transform: scale(var(--s, 1));
+    }
+
+    .f1 { --w: 90px; --l: 6%;  --s: 0.8; --d: 0.15s; }
+    .f2 { --w: 120px; --l: 26%; --s: 1.05; --d: 0.5s; }
+    .f3 { --w: 100px; --l: 48%; --s: 0.9; --d: 0s; }
+    .f4 { --w: 130px; --l: 66%; --s: 1.15; --d: 0.65s; }
+    .f5 { --w: 85px; --l: 86%; --s: 0.75; --d: 0.3s; }
+
+    .flower-svg .stem {
+      fill: none;
+      stroke: var(--stem);
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-dasharray: 210;
+      stroke-dashoffset: 210;
+    }
+
+    .flower-svg .leaf {
+      opacity: 0;
+      transform: scale(0.4);
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .flower-svg .bloom {
+      transform: scale(0) rotate(-18deg);
+      transform-box: fill-box;
+      transform-origin: center;
+      opacity: 0;
+    }
+
+    .flower-svg .petal {
+      transform-origin: 0px 0px;
+    }
+    .flower-svg .petal ellipse:nth-child(odd) { fill: var(--petal-1); }
+    .flower-svg .petal ellipse:nth-child(even) { fill: var(--petal-2); }
+
+    .flower-svg .flower-center {
+      fill: var(--center);
+    }
+
+    .flower-svg .flower-center-ring {
+      fill: var(--petal-shadow);
+      opacity: 0.55;
+    }
+
+    .field .flower-svg .stem {
+      animation: grow-stem 1s ease-out forwards;
+      animation-delay: var(--d);
+    }
+    .field .flower-svg .leaf {
+      animation: leaf-in 0.6s ease-out forwards;
+      animation-delay: calc(var(--d) + 0.55s);
+    }
+    .field .flower-svg .bloom {
+      animation: bloom-in 0.9s cubic-bezier(0.2, 0.8, 0.3, 1.15) forwards;
+      animation-delay: calc(var(--d) + 0.85s);
+    }
+    .field .flower-svg .bloom.settled {
+      animation: bloom-in 0.9s cubic-bezier(0.2, 0.8, 0.3, 1.15) forwards, sway 4.5s ease-in-out infinite;
+      animation-delay: calc(var(--d) + 0.85s), calc(var(--d) + 1.9s);
+    }
+
+    @keyframes grow-stem {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes leaf-in {
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes bloom-in {
+      0% { transform: scale(0) rotate(-18deg); opacity: 0; }
+      65% { transform: scale(1.12) rotate(4deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    @keyframes sway {
+      0%, 100% { rotate: -2.5deg; }
+      50% { rotate: 2.5deg; }
+    }
+
+    /* --- Message card --- */
+    .message-card {
+      position: absolute;
+      top: calc(7% + env(safe-area-inset-top, 0px));
+      left: 50%;
+      transform: translate(-50%, -14px);
+      width: 86%;
+      max-width: 340px;
+      background: var(--card);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      border-radius: 18px;
+      padding: 22px 22px 20px;
+      text-align: center;
+      box-shadow: 0 18px 40px -18px rgba(90, 62, 23, 0.45);
+      opacity: 0;
+    }
+
+    .message-card {
+      animation-name: card-in;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards;
+      animation: card-in 1s ease-out forwards;
+      animation-delay: 2.7s;
+    }
+
+    @keyframes card-in {
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+
+    .message-card .date {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: 12.5px;
+      letter-spacing: 0.4px;
+      color: #A07830;
+      margin: 0 0 8px;
+    }
+
+    .message-card h1 {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 21px;
+      color: var(--ink);
+      margin: 0 0 10px;
+      line-height: 1.35;
+    }
+
+    .message-card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #6B4E22;
+      margin: 0 0 12px;
+    }
+
+    .message-card .signature {
+      font-family: 'Fraunces', serif;
+      font-size: 15px;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .hint {
+      position: absolute;
+      bottom: 2%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: rgba(90, 62, 23, 0.55);
+      opacity: 0;
+      letter-spacing: 0.3px;
+    }
+    .hint {
+      animation: hint-in 1s ease-out forwards;
+      animation-delay: 3.4s;
+    }
+    @keyframes hint-in { to { opacity: 1; } }
+
+    /* Reinicio de animaciones al tocar */
+    .mobile-scene.reset .flower-svg .stem,
+    .mobile-scene.reset .flower-svg .leaf,
+    .mobile-scene.reset .flower-svg .bloom,
+    .mobile-scene.reset .message-card,
+    .mobile-scene.reset .hint { animation: none !important; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .field .flower-svg .stem { stroke-dashoffset: 0 !important; animation: none !important; }
+    .field .flower-svg .leaf { opacity: 1 !important; transform: scale(1) !important; animation: none !important; }
+    .field .flower-svg .bloom { opacity: 1 !important; transform: scale(1) rotate(0deg) !important; animation: none !important; }
+    .message-card { opacity: 1 !important; transform: translate(-50%, 0) !important; animation: none !important; }
+    .hint { opacity: 1 !important; animation: none !important; }
+    .falling-petal, .firefly { animation: none !important; opacity: 0 !important; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="desktop-message">
+    <svg class="desktop-flower" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(60,60)">
+        <g transform="rotate(0)"><ellipse cx="0" cy="-24" rx="12" ry="26" fill="#FFCB3D"/></g>
+        <g transform="rotate(60)"><ellipse cx="0" cy="-24" rx="12" ry="26" fill="#FFB100"/></g>
+        <g transform="rotate(120)"><ellipse cx="0" cy="-24" rx="12" ry="26" fill="#FFCB3D"/></g>
+        <g transform="rotate(180)"><ellipse cx="0" cy="-24" rx="12" ry="26" fill="#FFB100"/></g>
+        <g transform="rotate(240)"><ellipse cx="0" cy="-24" rx="12" ry="26" fill="#FFCB3D"/></g>
+        <g transform="rotate(300)"><ellipse cx="0" cy="-24" rx="12" ry="26" fill="#FFB100"/></g>
+        <circle r="12" fill="#B5651D"/>
+      </g>
+    </svg>
+    <h1>Esta sorpresa florece mejor en tu teléfono</h1>
+    <p>Por favor ábrela desde tu celular.</p>
+  </div>
+
+  <div class="mobile-scene">
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+
+    <div class="falling-petal"></div>
+    <div class="falling-petal"></div>
+    <div class="falling-petal"></div>
+    <div class="falling-petal"></div>
+    <div class="falling-petal"></div>
+
+    <div class="hill back"></div>
+    <div class="hill"></div>
+
+    <div class="field">
+      <!-- Flower template repeated x5, each with its own position/scale/delay via CSS vars -->
+      <svg class="flower-svg f3" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+        <path class="stem" d="M60,260 C57,200 63,150 60,95"/>
+        <path class="leaf" d="M60,175 C40,166 26,180 21,199 C45,200 58,190 60,175 Z" fill="#6B8F47"/>
+        <g transform="translate(60,80)">
+          <g class="bloom settled">
+            <g class="petal" style="transform:rotate(0deg)"><ellipse cx="0" cy="-26" rx="12" ry="27"/></g>
+            <g class="petal" style="transform:rotate(60deg)"><ellipse cx="0" cy="-26" rx="12" ry="27"/></g>
+            <g class="petal" style="transform:rotate(120deg)"><ellipse cx="0" cy="-26" rx="12" ry="27"/></g>
+            <g class="petal" style="transform:rotate(180deg)"><ellipse cx="0" cy="-26" rx="12" ry="27"/></g>
+            <g class="petal" style="transform:rotate(240deg)"><ellipse cx="0" cy="-26" rx="12" ry="27"/></g>
+            <g class="petal" style="transform:rotate(300deg)"><ellipse cx="0" cy="-26" rx="12" ry="27"/></g>
+            <circle class="flower-center-ring" r="13"/>
+            <circle class="flower-center" r="9"/>
+          </g>
+        </g>
+      </svg>
+
+      <svg class="flower-svg f1" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+        <path class="stem" d="M60,260 C63,205 58,155 60,100"/>
+        <path class="leaf" d="M60,168 C82,160 96,173 100,190 C77,193 62,183 60,168 Z" fill="#567A3A"/>
+        <g transform="translate(60,85)">
+          <g class="bloom settled">
+            <g class="petal" style="transform:rotate(0deg)"><ellipse cx="0" cy="-24" rx="11" ry="25"/></g>
+            <g class="petal" style="transform:rotate(60deg)"><ellipse cx="0" cy="-24" rx="11" ry="25"/></g>
+            <g class="petal" style="transform:rotate(120deg)"><ellipse cx="0" cy="-24" rx="11" ry="25"/></g>
+            <g class="petal" style="transform:rotate(180deg)"><ellipse cx="0" cy="-24" rx="11" ry="25"/></g>
+            <g class="petal" style="transform:rotate(240deg)"><ellipse cx="0" cy="-24" rx="11" ry="25"/></g>
+            <g class="petal" style="transform:rotate(300deg)"><ellipse cx="0" cy="-24" rx="11" ry="25"/></g>
+            <circle class="flower-center-ring" r="12"/>
+            <circle class="flower-center" r="8"/>
+          </g>
+        </g>
+      </svg>
+
+      <svg class="flower-svg f2" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+        <path class="stem" d="M60,260 C58,195 63,140 60,88"/>
+        <path class="leaf" d="M60,172 C40,163 25,177 20,196 C44,197 58,187 60,172 Z" fill="#6B8F47"/>
+        <g transform="translate(60,74)">
+          <g class="bloom settled">
+            <g class="petal" style="transform:rotate(0deg)"><ellipse cx="0" cy="-28" rx="13" ry="29"/></g>
+            <g class="petal" style="transform:rotate(60deg)"><ellipse cx="0" cy="-28" rx="13" ry="29"/></g>
+            <g class="petal" style="transform:rotate(120deg)"><ellipse cx="0" cy="-28" rx="13" ry="29"/></g>
+            <g class="petal" style="transform:rotate(180deg)"><ellipse cx="0" cy="-28" rx="13" ry="29"/></g>
+            <g class="petal" style="transform:rotate(240deg)"><ellipse cx="0" cy="-28" rx="13" ry="29"/></g>
+            <g class="petal" style="transform:rotate(300deg)"><ellipse cx="0" cy="-28" rx="13" ry="29"/></g>
+            <circle class="flower-center-ring" r="14"/>
+            <circle class="flower-center" r="10"/>
+          </g>
+        </g>
+      </svg>
+
+      <svg class="flower-svg f4" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+        <path class="stem" d="M60,260 C63,198 57,148 60,92"/>
+        <path class="leaf" d="M60,176 C82,168 96,181 100,198 C77,201 62,191 60,176 Z" fill="#567A3A"/>
+        <g transform="translate(60,78)">
+          <g class="bloom settled">
+            <g class="petal" style="transform:rotate(0deg)"><ellipse cx="0" cy="-27" rx="12.5" ry="28"/></g>
+            <g class="petal" style="transform:rotate(60deg)"><ellipse cx="0" cy="-27" rx="12.5" ry="28"/></g>
+            <g class="petal" style="transform:rotate(120deg)"><ellipse cx="0" cy="-27" rx="12.5" ry="28"/></g>
+            <g class="petal" style="transform:rotate(180deg)"><ellipse cx="0" cy="-27" rx="12.5" ry="28"/></g>
+            <g class="petal" style="transform:rotate(240deg)"><ellipse cx="0" cy="-27" rx="12.5" ry="28"/></g>
+            <g class="petal" style="transform:rotate(300deg)"><ellipse cx="0" cy="-27" rx="12.5" ry="28"/></g>
+            <circle class="flower-center-ring" r="13.5"/>
+            <circle class="flower-center" r="9.5"/>
+          </g>
+        </g>
+      </svg>
+
+      <svg class="flower-svg f5" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+        <path class="stem" d="M60,260 C57,203 62,153 60,102"/>
+        <path class="leaf" d="M60,180 C40,171 26,185 21,203 C45,204 58,194 60,180 Z" fill="#6B8F47"/>
+        <g transform="translate(60,88)">
+          <g class="bloom settled">
+            <g class="petal" style="transform:rotate(0deg)"><ellipse cx="0" cy="-22" rx="10" ry="23"/></g>
+            <g class="petal" style="transform:rotate(60deg)"><ellipse cx="0" cy="-22" rx="10" ry="23"/></g>
+            <g class="petal" style="transform:rotate(120deg)"><ellipse cx="0" cy="-22" rx="10" ry="23"/></g>
+            <g class="petal" style="transform:rotate(180deg)"><ellipse cx="0" cy="-22" rx="10" ry="23"/></g>
+            <g class="petal" style="transform:rotate(240deg)"><ellipse cx="0" cy="-22" rx="10" ry="23"/></g>
+            <g class="petal" style="transform:rotate(300deg)"><ellipse cx="0" cy="-22" rx="10" ry="23"/></g>
+            <circle class="flower-center-ring" r="11"/>
+            <circle class="flower-center" r="7.5"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <div class="message-card">
+      <p class="date">21 de septiembre</p>
+      <h1>Flores amarillas para ti</h1>
+      <p>Sé que hoy es un día muy especial y, por desgracia, no puedo entregártelas en persona. Pero quiero que este pequeño detalle, aunque sea digital, no le quite importancia a mi intención.</p>
+      <p>Te amo y te quiero muchísimo. Feliz 21 de septiembre, amor. Te amo y te querré por siempre.</p>
+      <p class="signature">— Becker</p>
+    </div>
+
+    <div class="hint">toca la pantalla para volver a verlas florecer</div>
+  </div>
+
+<script>
+  (function () {
+    var scene = document.querySelector('.mobile-scene');
+    if (!scene) return;
+    // Las animaciones corren solas con CSS; el JS solo las repite al tocar.
+    scene.addEventListener('click', function () {
+      scene.classList.add('reset');
+      void scene.offsetWidth;
+      scene.classList.remove('reset');
+    });
+  })();
+</script>
+
+</body>
+</html>
